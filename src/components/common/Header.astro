@@ -1,0 +1,27 @@
+---
+import { Picture, BackgroundImage, BackgroundPicture } from "astro-simple-art-direction";
+---
+
+<header id="header" class="sticky top-0 z-20 bg-white shadow-sm">
+  <div class="mx-auto flex max-w-[1470px] justify-between sm:pl-2 lg:pr-4">
+    <h1 class="relative z-10 flex flex-col justify-center px-2 py-2"></h1>
+    <p class="position relative z-10 lg:hidden">
+    </p>
+  </div>
+</header>
+<style is:global>
+  header {
+    touch-action: manipulation;
+  }
+  [data-button-state="on"] .on-hidden,
+  [data-button-state="off"] .off-hidden {
+    display: inline;
+  }
+  [data-button-state="on"] .off-hidden,
+  [data-button-state="off"] .on-hidden {
+    display: none;
+  }
+</style>
+<style>
+
+</style>

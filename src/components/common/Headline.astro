@@ -1,0 +1,23 @@
+---
+import { Picture, BackgroundImage, BackgroundPicture } from "astro-simple-art-direction";
+interface Props {
+  // head: string;
+  class?: string;
+}
+
+const { class: addClassName, ...props } = Astro.props;
+---
+
+<BackgroundPicture
+  class="mx-auto aspect-[300/120] max-w-[300px] font-zen-maru"
+  images={{
+    src: {
+      file: "bg_headline.png",
+      width: 300,
+      height: 120,
+    },
+  }}
+>
+  <h2 class="flex aspect-[300/120] items-center justify-center text-2xl font-bold"><slot /></h2>
+</BackgroundPicture>
+<style></style>

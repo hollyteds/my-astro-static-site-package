@@ -1,0 +1,35 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": "/Users/hollyteds/htdocs/my-project/my-astro-static-site-package",
+    "paths": {
+      "@layouts/*": [
+        "src/layouts/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@pages/*": [
+        "src/pages/*"
+      ],
+      "@renderers/*": [
+        "src/renderers/*"
+      ],
+      "@images/*": [
+        "src/images/*"
+      ],
+      "@scss/*": [
+        "src/scss/*"
+      ],
+      "@js/*": [
+        "src/js/*"
+      ],
+      "@public/*": [
+        "public/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
+}

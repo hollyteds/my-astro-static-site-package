@@ -1,0 +1,17 @@
+---
+interface Props {
+  class?: string;
+  TagName?: string;
+  level?: IntRange<1, 2>;
+}
+
+const { class: addClassName, TagName = "div", level = 1, ...props } = Astro.props;
+
+let className: string = "";
+if (level === 1) className = "px-2 sm:px-5 pt-5 sm:pt-8";
+if (level === 2) className = "px-2 sm:px-3 pt-3 sm:pt-3";
+---
+
+<TagName {...props} class:list={[className, addClassName]}>
+  <slot />
+</TagName>
