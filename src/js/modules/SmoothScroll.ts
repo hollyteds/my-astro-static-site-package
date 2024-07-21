@@ -62,7 +62,7 @@ export default class SmoothScroll {
   private static setEvent() : void {
     const anchorLinks : NodeListOf<Element> = document.querySelectorAll('a[href*="#"]');
     anchorLinks.forEach((link : Element)=> {
-      if (!this.isSamePage(link)) return;
+      if (!this.isEqualPage(link)) return;
       link.addEventListener('click', event => {
         event.preventDefault();
         const id : string = this.getHash(link.getAttribute('href'));
@@ -77,7 +77,7 @@ export default class SmoothScroll {
    * @param element - チェックする要素
    * @returns 要素が同じページを指しているかどうかを示すブール値
    */
-  private static isSamePage(element: Element): boolean | undefined {
+  private static isEqualPage(element: Element): boolean | undefined {
     const href: string | null = element.getAttribute('href');
     if (!href) return;
     const linkUrl: URL = new URL(href, location.href);
