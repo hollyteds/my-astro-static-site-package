@@ -1,11 +1,15 @@
+const cssDeclarationSorter = require('css-declaration-sorter');
+const autoPrefixer = require('autoprefixer');
+const sortMediaQueries = require('postcss-sort-media-queries');
+
 module.exports = {
-  plugins: {
-    'autoprefixer': {},
-    'css-declaration-sorter': {
+  plugins: [
+    autoPrefixer,
+    cssDeclarationSorter({
       order: 'smacss'
-    },
-    'postcss-sort-media-queries': {
+    }),
+    sortMediaQueries({
       sort: 'desktop-first' // default
-    }
-  },
+    })
+  ],
 };
