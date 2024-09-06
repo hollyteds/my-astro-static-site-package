@@ -1,0 +1,103 @@
+---
+import "@scss/scroll-hint.scss";
+// import MetaTagSet from "@components/common/Meta.astro";
+import { Picture, BackgroundImage, BackgroundPicture } from "astro-simple-art-direction";
+// import faviconSrc from "@images/favicon.png";
+import { getImage } from "astro:assets";
+
+interface Object {
+  [key: string]: string;
+}
+
+const siteUrl: string = "";
+// const favicon = {
+//   default: await getImage({ src: faviconSrc, width: 32, format: "webp" }),
+//   large: await getImage({ src: faviconSrc, width: 192, format: "webp" }),
+//   apple: await getImage({ src: faviconSrc, width: 160, format: "webp" }),
+// };
+
+interface Props {
+  title: string;
+  meta: Object;
+  ogp: Object;
+  schema: string;
+}
+
+const { title, meta, schema, ogp } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja" style="--header-height: 70px; --nav-height: 400px;" data-menu-button-target>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <title>{title}</title>
+    {
+      // metaの出力
+      Object.entries(meta).map(([key, value]) => value && value !== "" && <meta name={key} content={value} />)
+    }
+    {
+      // ogpの出力
+      Object.entries(ogp).map(([key, value]) => value && value !== "" && <meta property={"og:" + key} content={value} />)
+    }
+    <!-- <link rel="icon" type="image/webp+xml" href={favicon.default.src}/> -->
+    <!-- <link rel="icon" href={favicon.large.src} sizes="192x192" />
+    <link rel="apple-touch-icon" href={favicon.apple.src} /> -->
+    <script type="application/ld+json" set:html={schema} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="sitemap" href="https://######.jp/sitemap-index.xml" />
+  </head>
+  <body id="top" class="font-medium leading-relaxed text-tcg-black underline-offset-2 sm:text-lg">
+    <slot />{/*
+    <div id="top-button">
+      <a href="#top">
+        <!-- <Picture
+          src={{
+            file: "img-top-button.svg",
+            width: 50,
+            height: 50,
+          }}
+          artDirectives={[
+            {
+              media: "(min-width: 768px)",
+              file: "img-top-button-l.svg",
+              width: 50,
+              height: 50,
+            },
+          ]}
+          loading="eager"
+          alt="トップへ戻る"
+        /> -->
+      </a>
+    </div>
+    <div id="scroll-observer" aria-hidden="true" class="pointer-events-none invisible absolute top-0 h-dvh"></div> */}
+  </body>
+  <script>
+    import "@js/main.ts";
+  </script>
+</html>
+<style is:global>
+  * {
+    min-inline-size: 0
+  }
+  #top-button {
+    position: fixed;
+    opacity: 0;
+    transition: opacity 0.3s;
+    right: 0;
+    bottom: -10px;
+    z-index: 10px;
+    pointer-events: none;
+  }
+  @media (min-width: 768px) {
+    #top-button {
+      right: 20px;
+      bottom: 20px;
+    }
+  }
+  .is-show-button #top-button {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>

@@ -1,0 +1,51 @@
+---
+interface Props {
+  link?: string;
+  class?: string;
+  innerClass?: string;
+  align?: string;
+  tabLink?: boolean;
+  ArrowsDirection?: "right" | "bottom";
+}
+
+const { link, class: addClassName, tabLink, innerClass, ArrowsDirection = "right", ...props } = Astro.props;
+
+const mergeProps = {
+  ...props,
+  ...(tabLink
+    ? {
+        target: "_blank",
+        rel: "noopener noreferrer",
+      }
+    : null),
+};
+const TagName = link ? 'a' : 'div';
+---
+
+<div class="max-w-[400px] rounded-full text-center text-white" class:list={[addClassName]}>
+  <TagName {...mergeProps} href={link ?? undefined } class="rounded-full bg-tcg-pink flex gap-2 justify-between items-center" class:list={[innerClass, "button"]}>
+    <span class="flex-grow"><slot /></span>
+    <svg width="1.2em" height="1.2em" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="w-[1.2em]" class:list={[ArrowsDirection === "bottom" ? "rotate-90" : undefined]}
+      ><path d="m12 24c-6.63 0-12-5.37-12-12s5.37-12 12-12 12 5.37 12 12-5.37 12-12 12zm-4.54-6.38 2.61 2.61 8.23-8.23-8.23-8.23-2.61 2.61 5.62 5.62z"></path></svg
+    >
+  </TagName>
+</div>
+<style lang="scss">
+  .button {
+    position: relative;
+    padding: 0.8em 1.2em 0.8em 1.2em;
+    box-shadow: 0 5px 0 #e85163;
+  }
+  @media (hover: hover) {
+    .button {
+      transition: 0.2s;
+    }
+    .button:hover {
+      translate: 0 3px;
+      box-shadow: 0 2px 0 #e85163;
+    }
+  }
+  svg {
+    display: inline;
+  }
+</style>

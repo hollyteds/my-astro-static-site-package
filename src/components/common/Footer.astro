@@ -1,0 +1,16 @@
+---
+import { Picture, BackgroundImage, BackgroundPicture } from "astro-simple-art-direction";
+
+interface Props {
+  class?: string;
+}
+
+const { class: addClassName, ...props } = Astro.props;
+---
+
+<!-- Start Footer -->
+<footer id="footer" {...props}  class:list={[addClassName]}>
+</footer>
+  <!-- End Footer -->
+  <style lang="scss"></style>
+

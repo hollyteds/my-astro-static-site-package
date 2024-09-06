@@ -1,0 +1,55 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/common/Header.astro";
+import Footer from "@components/common/Footer.astro";
+
+import { Picture, BackgroundImage, BackgroundPicture } from "astro-simple-art-direction";
+
+import { getImage } from "astro:assets";
+
+// import thumbnail from "@images/thumbnail.jpg";
+
+// const ogpImage = await getImage({ src: thumbnail, format: "webp", width: 1200 });
+
+interface Object {
+  [key: string]: string;
+}
+
+const siteUrl: string = "https://#####/";
+const name: string = "";
+const description: string = "";
+const title: string = name;
+
+const meta: Object = {
+  viewport: "width=device-width",
+  "format-detection": "telephone=no",
+  description: description,
+  "twitter:card": "summary_large_image",
+  "google-site-verification": "",
+};
+
+const ogp: Object = {
+  title: title,
+  description: description,
+  type: "website",
+  // image: siteUrl + ogpImage.src,
+  url: siteUrl + "/",
+  site_name: title,
+};
+
+const schema: string = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: title,
+});
+---
+
+<Layout title={title} meta={meta} schema={schema} ogp={ogp}>
+  <Header />
+  <main id="main">
+    
+  </main>
+  <Footer class="" />
+</Layout>
+
+<style is:global></style>
