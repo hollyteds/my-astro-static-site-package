@@ -1,6 +1,4 @@
 ---
-import "@scss/scroll-hint.scss";
-// import MetaTagSet from "@components/common/Meta.astro";
 import { Picture, BackgroundImage, BackgroundPicture } from "astro-simple-art-direction";
 // import faviconSrc from "@images/favicon.png";
 import { getImage } from "astro:assets";
@@ -9,7 +7,9 @@ interface Object {
   [key: string]: string;
 }
 
-const siteUrl: string = "";
+const siteUrl: string = "https://example.jp/";
+const siteName: string = "My Astro Static Site Package";
+const defaultDescription = ""
 // const favicon = {
 //   default: await getImage({ src: faviconSrc, width: 32, format: "webp" }),
 //   large: await getImage({ src: faviconSrc, width: 192, format: "webp" }),
@@ -18,12 +18,54 @@ const siteUrl: string = "";
 
 interface Props {
   title: string;
-  meta: Object;
-  ogp: Object;
-  schema: string;
+  meta?: Object;
+  ogp?: Object;
+  schema?: string;
 }
 
-const { title, meta, schema, ogp } = Astro.props;
+const { title, meta: pageMeta, schema: pageSchema, ogp: pageOgp } = Astro.props;
+
+const meta: Object = {
+  viewport: "width=device-width",
+  "format-detection": "telephone=no",
+  description: defaultDescription,
+  "twitter:card": "summary_large_image",
+  "google-site-verification": "", // Google Search Console
+  ...pageMeta,
+};
+
+const ogp: Object = {
+  title: title + siteName,
+  description: defaultDescription,
+  type: "website",
+  // image: siteUrl + ogpImage.src,
+  url: siteUrl + "/",
+  site_name: siteName,
+  ...pageOgp,
+};
+
+const schema: string = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteName,
+  url: siteUrl,
+  // logo: favicon.large.src,
+  contactPoint: {
+    telephone: "+81-3-1234-1234",
+    faxNumber: "+81-3-1234-1234",
+    contactType: "代表",
+    areaServed: "JP",
+    availableLanguage: ["Japanese"],
+  },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "千代田１",
+    postalCode: "100-0000",
+    addressLocality: "千代田区",
+    addressRegion: "東京都",
+    addressCountry: "JP",
+  },
+});
 ---
 
 <!doctype html>
@@ -73,12 +115,71 @@ const { title, meta, schema, ogp } = Astro.props;
     <div id="scroll-observer" aria-hidden="true" class="pointer-events-none invisible absolute top-0 h-dvh"></div> */}
   </body>
   <script>
-    import "@js/main.ts";
+    /* スモールデバイス用対策モジュール */
+    import switchViewport from "@modules/fixViewport";
+
+    /* メニューボタンの発火モジュール */
+    import SetMenuButton from "@modules/SetMenuButton"; 
+
+    /* スムーススクロール */
+    import SmoothScroll from "@modules/SmoothScroll";
+
+    import addAriaHiddenToBrTags from '@modules/addAriaHiddenToBrTags';
+
+    // import ScrollObserver from "@modules/ScrollObserver"; // スクロール時の固定フッター設定用インスタンス
+    
+    // 最小ウインドウ幅
+    const minWindowWidth: number = 375; 
+
+    const setMenuButton = new SetMenuButton;
+
+    addAriaHiddenToBrTags();
+
+    SmoothScroll.init();
+
+    // イベント **********************************************************
+
+    // ぺージロード時に処理
+    document.addEventListener("DOMContentLoaded", () => {
+      switchViewport(minWindowWidth);
+    });
+
+    document.addEventListener("load", () => {
+      setMenuPosition();
+      setNavHeight();
+    });
+
+    // リサイズ時に処理
+    window.addEventListener('resize', () => {
+      switchViewport(minWindowWidth);
+      setMenuPosition();
+      setNavHeight();
+    }, false);
+
+
+    // 関数 **********************************************************
+
+    const setMenuPosition = () => {
+      const screenWidth = window.innerWidth;
+      const targetElement: HTMLElement | null = screenWidth >= 1024
+        ?	document.getElementById('nav') : document.getElementById('header');
+
+      document.documentElement.style.setProperty('--header-height', `${targetElement?.clientHeight}px`);
+    }
+
+    const setNavHeight = () => {
+      const targetElement: HTMLElement | null = document.getElementById('nav');
+
+      document.documentElement.style.setProperty('--nav-height', `${targetElement?.clientHeight}px`);
+    }
   </script>
 </html>
 <style is:global>
   * {
     min-inline-size: 0
+  }
+  svg {
+    fill: currentColor;
   }
   #top-button {
     position: fixed;

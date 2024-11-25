@@ -1,17 +1,17 @@
 /* スモールデバイス用対策モジュール */
-import switchViewport from "@js/modules/fixViewport";
+import switchViewport from "@modules/fixViewport";
 
 /* メニューボタンの発火モジュール */
-import SetMenuButton from "@js/modules/SetMenuButton"; 
+import SetMenuButton from "@modules/SetMenuButton"; 
 
 /* スムーススクロール */
-import SmoothScroll from "@js/modules/SmoothScroll";
+import SmoothScroll from "@modules/SmoothScroll";
 
 // import ScrollHint from 'scroll-hint';
 
-import addAriaHiddenToBrTags from '@js/modules/addAriaHiddenToBrTags';
+import addAriaHiddenToBrTags from '@modules/addAriaHiddenToBrTags';
 
-// import ScrollObserver from "@js/modules/ScrollObserver"; // スクロール時の固定フッター設定用インスタンス
+// import ScrollObserver from "@modules/ScrollObserver"; // スクロール時の固定フッター設定用インスタンス
 
 // Googleフォントの指定 (Array)
 const WebFont: string[] = ['Zen+Maru+Gothic:500'];

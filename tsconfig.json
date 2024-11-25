@@ -22,8 +22,8 @@
       "@scss/*": [
         "src/scss/*"
       ],
-      "@js/*": [
-        "src/js/*"
+      "@modules/*": [
+        "src/modules/*"
       ],
       "@public/*": [
         "public/*"

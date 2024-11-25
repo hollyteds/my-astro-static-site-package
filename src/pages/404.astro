@@ -14,17 +14,14 @@ interface Object {
   [key: string]: string;
 }
 
-const siteUrl: string = "https://#####/";
-const name: string = "ページが見つかりません | ";
-const description: string = "";
-const title: string = name;
+const siteUrl: string = "https://example.jp/";
+const name: string = "";
+const description: string = "ページが見つかりません";
+const title: string = name + " | ";
 
 const meta: Object = {
-  viewport: "width=device-width",
-  "format-detection": "telephone=no",
+  description: description,
   robots: "noindex",
-  "twitter:card": "summary_large_image",
-  "google-site-verification": "",
 };
 
 const ogp: Object = {
@@ -35,15 +32,9 @@ const ogp: Object = {
   url: siteUrl + "/",
   site_name: title,
 };
-
-const schema: string = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Event",
-  name: title,
-});
 ---
 
-<Layout title={title} meta={meta} schema={schema} ogp={ogp}>
+<Layout title={title} meta={meta} ogp={ogp}>
   <Header />
   <main id="main" class="">
   </main>

@@ -15,17 +15,13 @@ interface Object {
   [key: string]: string;
 }
 
-const siteUrl: string = "https://#####/";
+const siteUrl: string = "https://example.jp/";
 const name: string = "";
-const description: string = "";
+const description: string = "トップページです。";
 const title: string = name;
 
 const meta: Object = {
-  viewport: "width=device-width",
-  "format-detection": "telephone=no",
   description: description,
-  "twitter:card": "summary_large_image",
-  "google-site-verification": "",
 };
 
 const ogp: Object = {
@@ -37,14 +33,9 @@ const ogp: Object = {
   site_name: title,
 };
 
-const schema: string = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Event",
-  name: title,
-});
 ---
 
-<Layout title={title} meta={meta} schema={schema} ogp={ogp}>
+<Layout title={title} meta={meta} ogp={ogp}>
   <Header />
   <main id="main">
     
