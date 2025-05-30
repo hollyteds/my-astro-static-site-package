@@ -10,27 +10,19 @@ import { getImage } from "astro:assets";
 
 // const ogpImage = await getImage({ src: thumbnail, format: "webp", width: 1200 });
 
-interface Object {
-  [key: string]: string;
-}
+const title: string = "ページが見つかりません" + " | " + __SITE_NAME__; // astro.config.mjsで定義したサイト名
+const description: string = "";
 
-const siteUrl: string = "https://example.jp/";
-const name: string = "";
-const description: string = "ページが見つかりません";
-const title: string = name + " | ";
-
-const meta: Object = {
-  description: description,
+const meta: Record<string, string> = {
+  ...(description ? { description: description } : {}),
   robots: "noindex",
 };
 
-const ogp: Object = {
+const ogp: OGP = {
   title: title,
-  description: description,
-  type: "website",
-  // image: siteUrl + ogpImage.src,
-  url: siteUrl + "/",
-  site_name: title,
+  ...(description ? { description: description } : {}),
+  // image: Astro.url.origin + ogpImage.src, // ogp画像のURL,
+  url: Astro.url.href,
 };
 ---
 

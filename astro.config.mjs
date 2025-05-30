@@ -51,6 +51,9 @@ export default defineConfig({
       cssCodeSplit: false,
       minify: false,
       keepNames: true
+    },
+    define: {
+      __SITE_NAME__: JSON.stringify('このサイト名'), // サイト名（全てのページで参照できるようにグローバルで定義）
     }
   }
 });

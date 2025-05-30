@@ -3,10 +3,6 @@ import { Picture, BackgroundImage, BackgroundPicture } from "astro-simple-art-di
 // import faviconSrc from "@images/favicon.png";
 import { getImage } from "astro:assets";
 
-interface Object {
-  [key: string]: string;
-}
-
 const siteUrl: string = "https://example.jp/";
 const siteName: string = "My Astro Static Site Package";
 const defaultDescription = ""
@@ -18,14 +14,14 @@ const defaultDescription = ""
 
 interface Props {
   title: string;
-  meta?: Object;
-  ogp?: Object;
+  meta?: Record<string, string>;
+  ogp?: OGP;
   schema?: string;
 }
 
 const { title, meta: pageMeta, schema: pageSchema, ogp: pageOgp } = Astro.props;
 
-const meta: Object = {
+const meta: Record<string, string> = {
   viewport: "width=device-width",
   "format-detection": "telephone=no",
   description: defaultDescription,
@@ -34,20 +30,21 @@ const meta: Object = {
   ...pageMeta,
 };
 
-const ogp: Object = {
-  title: title + siteName,
+
+const ogp: OGP = {
+  title: __SITE_NAME__,
   description: defaultDescription,
   type: "website",
   // image: siteUrl + ogpImage.src,
-  url: siteUrl + "/",
-  site_name: siteName,
+  url: Astro.url.href,
+  site_name: __SITE_NAME__, // astro.config.mjsで定義したサイト名
   ...pageOgp,
 };
 
 const schema: string = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: siteName,
+  name: __SITE_NAME__,
   url: siteUrl,
   // logo: favicon.large.src,
   contactPoint: {

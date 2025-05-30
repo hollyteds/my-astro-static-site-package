@@ -15,22 +15,18 @@ interface Object {
   [key: string]: string;
 }
 
-const siteUrl: string = "https://example.jp/";
-const name: string = "";
 const description: string = "トップページです。";
-const title: string = name;
+const title: string = __SITE_NAME__;
 
-const meta: Object = {
+const meta: Record<string, string> = {
   description: description,
 };
 
-const ogp: Object = {
+const ogp: OGP = {
   title: title,
-  description: description,
-  type: "website",
-  // image: siteUrl + ogpImage.src,
-  url: siteUrl + "/",
-  site_name: title,
+  ...(description ? { description: description } : {}),
+  // image: Astro.url.origin + ogpImage.src, // ogp画像のURL,
+  url: Astro.url.href,
 };
 
 ---

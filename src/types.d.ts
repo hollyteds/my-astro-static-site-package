@@ -27,3 +27,32 @@ interface navItem {
   link: string,
   tabLink?: boolean;
 }
+
+/**
+ * Open Graph Protocol (OGP) メタデータを表します。
+ * 
+ * @property {string} [title] - グラフ内に表示されるオブジェクトのタイトル (og:title)。
+ * @property {string} [description] - オブジェクトの1〜2文の説明 (og:description)。
+ * @property {string} [type] - オブジェクトの種類、例: "website" (og:type)。
+ * @property {string} [url] - オブジェクトの正規URL (og:url)。
+ * @property {string} [image] - グラフ内でオブジェクトを表す画像URL (og:image)。
+ * @property {string} [site_name] - サイト全体の名前 (og:site_name)。
+ * @property {string} [locale] - タグがマークアップされているロケール、例: "en_US" (og:locale)。
+ * @property {string} [audio] - このオブジェクトに付随するオーディオファイルのURL (og:audio)。
+ * @property {string} [video] - このオブジェクトに付随するビデオファイルのURL (og:video)。
+ * @property {string} [determiner] - 文中でタイトルの前に表示される単語 (og:determiner)。
+ */
+interface OGP {
+  title?: string;        // og:title
+  description?: string;  // og:description
+  type?: string;         // og:type
+  url?: string;          // og:url
+  image?: string;        // og:image
+  site_name?: string;    // og:site_name
+  locale?: string;       // og:locale
+  audio?: string;        // og:audio
+  video?: string;        // og:video
+  determiner?: string;   // og:determiner
+}
+
+declare const __SITE_NAME__: string;
