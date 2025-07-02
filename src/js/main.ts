@@ -23,13 +23,12 @@ const setMenuButton = new SetMenuButton;
 
 addAriaHiddenToBrTags();
 
-SmoothScroll.init();
-
 // イベント **********************************************************
 
 // ぺージロード時に処理
 document.addEventListener("DOMContentLoaded", () => {
 	switchViewport(minWindowWidth);
+	new SmoothScroll();
 	// new ScrollHint('.js-scrollable', {
 	// 	i18n: {
 	// 		scrollable: 'スクロールできます'
