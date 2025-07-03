@@ -132,13 +132,12 @@ const schema: string = JSON.stringify({
 
     addAriaHiddenToBrTags();
 
-    SmoothScroll.init();
-
     // イベント **********************************************************
 
     // ぺージロード時に処理
     document.addEventListener("DOMContentLoaded", () => {
       switchViewport(minWindowWidth);
+      new SmoothScroll();
     });
 
     document.addEventListener("load", () => {

@@ -18,7 +18,7 @@
     "@playwright/test": "^1.49.0",
     "@types/node": "^22.9.3",
     "@typescript-eslint/parser": "^8.15.0",
-    "astro": "^4.16.14",
+    "astro": "^5.10.2",
     "astro-compress": "^2.3.5",
     "astro-html-beautifier": "^1.0.4",
     "astro-relative-links": "^0.4.2",
