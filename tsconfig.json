@@ -27,6 +27,12 @@
       ],
       "@public/*": [
         "public/*"
+      ],
+      "@links": [
+        "src/links.ts"
+      ],
+      "@classList" : [
+        "src/classList.ts"
       ]
     },
     "jsx": "react-jsx",

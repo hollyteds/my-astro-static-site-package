@@ -3,7 +3,6 @@ import { Picture, BackgroundImage, BackgroundPicture } from "astro-simple-art-di
 // import faviconSrc from "@images/favicon.png";
 import { getImage } from "astro:assets";
 
-const siteUrl: string = "https://example.jp/";
 const siteName: string = "My Astro Static Site Package";
 const defaultDescription = ""
 // const favicon = {
@@ -35,7 +34,7 @@ const ogp: OGP = {
   title: __SITE_NAME__,
   description: defaultDescription,
   type: "website",
-  // image: siteUrl + ogpImage.src,
+  // image: Astro.url.href + ogpImage.src,
   url: Astro.url.href,
   site_name: __SITE_NAME__, // astro.config.mjsで定義したサイト名
   ...pageOgp,
@@ -45,7 +44,7 @@ const schema: string = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Organization",
   name: __SITE_NAME__,
-  url: siteUrl,
+  url: Astro.url.href,
   // logo: favicon.large.src,
   contactPoint: {
     telephone: "+81-3-1234-1234",
@@ -79,14 +78,16 @@ const schema: string = JSON.stringify({
       // ogpの出力
       Object.entries(ogp).map(([key, value]) => value && value !== "" && <meta property={"og:" + key} content={value} />)
     }
-    <!-- <link rel="icon" type="image/webp+xml" href={favicon.default.src}/> -->
-    <!-- <link rel="icon" href={favicon.large.src} sizes="192x192" />
-    <link rel="apple-touch-icon" href={favicon.apple.src} /> -->
+    {/* 
+    <link rel="icon" type="image/webp+xml" href={favicon.default.src}/>
+    <link rel="icon" href={favicon.large.src} sizes="192x192" />
+    <link rel="apple-touch-icon" href={favicon.apple.src} />
+    */}
     <script type="application/ld+json" set:html={schema} />
     <meta name="generator" content={Astro.generator} />
     <link rel="sitemap" href="https://######.jp/sitemap-index.xml" />
   </head>
-  <body id="top" class="font-medium leading-relaxed text-tcg-black underline-offset-2 sm:text-lg">
+  <body id="top" class="">
     <slot />{/*
     <div id="top-button">
       <a href="#top">
@@ -174,7 +175,10 @@ const schema: string = JSON.stringify({
   * {
     min-inline-size: 0
   }
-  svg {
+  :where(body) {
+    @apply leading-relaxed underline-offset-2;
+  }
+  :where(svg) {
     fill: currentColor;
   }
   #top-button {

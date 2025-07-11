@@ -30,16 +30,21 @@ export default {
 					"Zen Maru Gothic", "san-serif"
 				],
 			},
-			// colors: {
-			// 	"tcg": {
-			// 		"light-blue": "#51c7ee",
-			// 		"blue": "#197fbf",
-			// 		"light-pink": "#fcf2f7",
-			// 		"pink": "#e57cab",
-			// 		"black": "#1a1a1a",
-			// 		"DEFAULT": "#197fbf",
-			// 	}
-			// },
+			colors: {
+				"theme": {
+					"DEFAULT": "#000000",
+				}
+			},
+			gridTemplateColumns: {
+				...Object.fromEntries(
+					Array.from({ length: 12 }, (_, i) => [`auto-${i + 1}`, `repeat(${i + 1}, auto)`])
+				),
+			},
+			gridTemplateRows: {
+				...Object.fromEntries(
+					Array.from({ length: 12 }, (_, i) => [`auto-${i + 1}`, `repeat(${i + 1}, auto)`])
+				),
+			},
 			boxShadow: {
 				sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
 				DEFAULT: '0 0 4px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',

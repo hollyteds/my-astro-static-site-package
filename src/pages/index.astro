@@ -3,6 +3,9 @@ import Layout from "@layouts/Layout.astro";
 import Header from "@components/common/Header.astro";
 import Footer from "@components/common/Footer.astro";
 
+import { url } from "@links";
+import { classList } from "@classList";
+
 import { Picture, BackgroundImage, BackgroundPicture } from "astro-simple-art-direction";
 
 import { getImage } from "astro:assets";
@@ -10,10 +13,6 @@ import { getImage } from "astro:assets";
 // import thumbnail from "@images/thumbnail.jpg";
 
 // const ogpImage = await getImage({ src: thumbnail, format: "webp", width: 1200 });
-
-interface Object {
-  [key: string]: string;
-}
 
 const description: string = "トップページです。";
 const title: string = __SITE_NAME__;
