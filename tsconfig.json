@@ -7,6 +7,9 @@
       "@layouts/*": [
         "src/layouts/*"
       ],
+      "@components": [
+        "src/components/index.ts"
+      ],
       "@components/*": [
         "src/components/*"
       ],
