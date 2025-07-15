@@ -21,6 +21,7 @@
     "astro": "^5.10.2",
     "astro-compress": "^2.3.5",
     "astro-html-beautifier": "^1.0.4",
+    "astro-icon": "^1.1.5",
     "astro-relative-links": "^0.4.2",
     "astro-simple-art-direction": "^1.0.8",
     "autoprefixer": "^10.4.20",

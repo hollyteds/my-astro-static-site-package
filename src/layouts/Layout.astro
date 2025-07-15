@@ -85,7 +85,7 @@ const schema: string = JSON.stringify({
     */}
     <script type="application/ld+json" set:html={schema} />
     <meta name="generator" content={Astro.generator} />
-    <link rel="sitemap" href="https://######.jp/sitemap-index.xml" />
+    <link rel="sitemap" href={Astro.url.href + "sitemap-index.xml"} />
   </head>
   <body id="top" class="">
     <slot />{/*
@@ -186,7 +186,7 @@ const schema: string = JSON.stringify({
     opacity: 0;
     transition: opacity 0.3s;
     right: 0;
-    bottom: -10px;
+    bottom: 10px;
     z-index: 10px;
     pointer-events: none;
   }
