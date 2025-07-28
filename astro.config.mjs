@@ -21,6 +21,7 @@ export default defineConfig({
   placeholder: "none",
   site: 'https://example.jp',
   integrations: [
+    icon(),
     tailwind(),
     sitemap(),
     htmlBeautifier({
@@ -41,7 +42,7 @@ export default defineConfig({
       indent_empty_lines: false,
       unformatted: ["path"],
       content_unformatted: ["path"],
-      extra_liners: ["a", "/a", "img", "source", "span", "svg", "button", "/button", "menu-box", "/menu-box", "!--"] 
+      // extra_liners: ["a", "/a", "img", "source", "span", "svg", "button", "/button", "menu-box", "/menu-box", "!--"] 
     }),
     codeFormatting() // htmlBeautifierで整形しきれない分
   ],
