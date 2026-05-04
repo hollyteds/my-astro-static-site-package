@@ -1,5 +1,7 @@
 ---
 import { Picture, BackgroundImage, BackgroundPicture } from "astro-simple-art-direction";
+import "../styles/global.css";
+import { materialIconStylesheets } from "../utils/materialIconStylesheets";
 // import faviconSrc from "@images/favicon.png";
 import { getImage } from "astro:assets";
 
@@ -86,6 +88,15 @@ const schema: string = JSON.stringify({
     <script type="application/ld+json" set:html={schema} />
     <meta name="generator" content={Astro.generator} />
     <link rel="sitemap" href={Astro.url.href + "sitemap-index.xml"} />
+    {
+      materialIconStylesheets.length > 0 && (
+        <>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          {materialIconStylesheets.map((href) => <link rel="stylesheet" href={href} />)}
+        </>
+      )
+    }
   </head>
   <body id="top" class="">
     <slot />{/*
@@ -176,18 +187,19 @@ const schema: string = JSON.stringify({
     min-inline-size: 0
   }
   :where(body) {
-    @apply leading-relaxed underline-offset-2;
+    line-height: 1.75;
+    text-underline-offset: 2px;
   }
   :where(svg) {
     fill: currentColor;
   }
   #top-button {
     position: fixed;
-    opacity: 0;
-    transition: opacity 0.3s;
+    z-index: 10px;
     right: 0;
     bottom: 10px;
-    z-index: 10px;
+    transition: opacity 0.3s;
+    opacity: 0;
     pointer-events: none;
   }
   @media (min-width: 768px) {

@@ -1,9 +1,9 @@
 import { defineConfig } from 'astro/config';
 import relativeLinks from 'astro-relative-links';
 import sitemap from "@astrojs/sitemap";
-import partytown from "@astrojs/partytown";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import htmlBeautifier from "astro-html-beautifier";
+import icon from "astro-icon";
 import codeFormatting from './code.formatting.js';
 
 // https://astro.build/config
@@ -22,7 +22,6 @@ export default defineConfig({
   site: 'https://example.jp',
   integrations: [
     icon(),
-    tailwind(),
     sitemap(),
     htmlBeautifier({
       indent_size: 4,
@@ -47,6 +46,10 @@ export default defineConfig({
     codeFormatting() // htmlBeautifierで整形しきれない分
   ],
   vite: {
+    plugins: [tailwindcss()],
+    css: {
+      transformer: "lightningcss"
+    },
     build: {
       sourcemap: false,
       cssCodeSplit: false,
