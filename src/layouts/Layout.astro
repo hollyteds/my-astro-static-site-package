@@ -1,11 +1,7 @@
 ---
-import { Picture, BackgroundImage, BackgroundPicture } from "astro-simple-art-direction";
 import "../styles/global.css";
 import { materialIconStylesheets } from "../utils/materialIconStylesheets";
-// import faviconSrc from "@images/favicon.png";
-import { getImage } from "astro:assets";
 
-const siteName: string = "My Astro Static Site Package";
 const defaultDescription = ""
 // const favicon = {
 //   default: await getImage({ src: faviconSrc, width: 32, format: "webp" }),
@@ -20,7 +16,7 @@ interface Props {
   schema?: string;
 }
 
-const { title, meta: pageMeta, schema: pageSchema, ogp: pageOgp } = Astro.props;
+const { title, meta: pageMeta, ogp: pageOgp } = Astro.props;
 
 const meta: Record<string, string> = {
   viewport: "width=device-width",

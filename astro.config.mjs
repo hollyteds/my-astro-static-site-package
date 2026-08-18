@@ -1,9 +1,7 @@
 import { defineConfig } from 'astro/config';
-import relativeLinks from 'astro-relative-links';
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import htmlBeautifier from "astro-html-beautifier";
-import icon from "astro-icon";
 import codeFormatting from './code.formatting.js';
 
 // https://astro.build/config
@@ -21,7 +19,6 @@ export default defineConfig({
   placeholder: "none",
   site: 'https://example.jp',
   integrations: [
-    icon(),
     sitemap(),
     htmlBeautifier({
       indent_size: 4,

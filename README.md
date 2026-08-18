@@ -1,10 +1,10 @@
 # My Astro Static Site Package
 
-このプロジェクトは Astro v6 ベースの静的サイトテンプレートです。
+このプロジェクトは Astro v7 ベースの静的サイトテンプレートです。
 
 ## 前提
 
-- Node.js 18+
+- Node.js 22.12+
 - npm
 
 ## セットアップ
@@ -119,6 +119,5 @@ mode 別に分ける場合は以下を追加してください。
 
 ## 留意点
 
-- `astro.config.mjs` の `relativeLinks` import は現状未使用です（警告対象）。
 - daisyUI 利用時、CSS最適化で `@property` に関する警告が出ることがありますが、ビルド自体は完了します。
 - `npm run build:test` と `npm run build:prod` を同時実行すると、同じ `dist/` を書き換えて競合することがあります。1コマンドずつ実行してください。
